@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animated AI Website</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://kit.fontawesome.com/367aabf6ff.js" crossorigin="anonymous"></script>
+  <style>
+    @tailwind base;
+    @tailwind components;
+    @tailwind utilities;
+
+    /* Custom animations */
+    .fade-in {
+      @apply opacity-0 transition-opacity duration-1000;
+    }
+    .fade-in-active {
+      @apply opacity-100;
+    }
+    .slide-in {
+      @apply transform translate-x-full transition-transform duration-1000;
+    }
+    .slide-in-active {
+      @apply transform translate-x-0;
+    }
+    .scale-up {
+      @apply transform scale-75 transition-transform duration-1000;
+    }
+    .scale-up-active {
+      @apply transform scale-100;
+    }
+  </style>
+</head>
+<body class="bg-[#1f0e32] text-white">
+
+<!-- Header Section -->
+<section class="fade-in" id="header">
+  <div class="flex justify-around bg-black text-white py-3">
+    <div class="text-3xl font-semibold hover:text-orange-500 transition-colors duration-300">
+      <h1>Artificial Intelligence</h1>
+    </div>
+    <div class="flex gap-10 text-3xl font-semibold">
+      <a href="#" class="hover:text-orange-500 transition-colors duration-300">Home</a>
+      <a href="#" class="hover:text-orange-500 transition-colors duration-300">Category</a>
+      <a href="#" class="hover:text-orange-500 transition-colors duration-300">About</a>
+      <a href="#" class="hover:text-orange-500 transition-colors duration-300">Contact</a>
+    </div>
+    <div class="flex gap-7 text-3xl font-semibold">
+      <i class="fa-brands fa-youtube text-red-600 hover:scale-110 transition-transform duration-300"></i>
+      <i class="fa-brands fa-square-instagram text-orange-700 hover:scale-110 transition-transform duration-300"></i>
+      <i class="fa-brands fa-facebook text-blue-700 hover:scale-110 transition-transform duration-300"></i>
+      <i class="fa-brands fa-x-twitter hover:scale-110 transition-transform duration-300"></i>
+      <i class="fa-solid fa-magnifying-glass text-green-700 hover:scale-110 transition-transform duration-300"></i>
+    </div>
+  </div>
+</section>
+
+<!-- Hero Section -->
+<section class="relative h-screen w-full bg-cover bg-fixed bg-[url('./img/ai.jpg')] fade-in">
+  <div class="absolute inset-0 bg-black bg-opacity-55 flex justify-center items-center transition-opacity duration-1000">
+    <div class="text-center container mx-auto py-36 scale-up">
+      <h2 class="text-2xl fade-in-active">HELLO, NEW FRIEND</h2>
+      <h1 class="text-6xl font-bold py-10 fade-in-active">"Artificial Intelligence"</h1>
+      <p class="text-2xl pb-5 font-semibold fade-in-active">Artificial Intelligence (AI) is a field of technology that enables computers or machines to perform tasks that require human-like intelligence.</p>
+      <button class="bg-orange-500 hover:bg-orange-700 px-6 py-3 rounded-lg font-semibold text-2xl transition-transform duration-500 hover:scale-105">Read More</button>
+    </div>
+  </div>
+</section>
+
+<!-- About Section -->
+<section class="relative bg-[#39195b] h-[550px] py-20 text-white text-center slide-in">
+  <h1 class="text-[55px] font-semibold fade-in">Hi, This is <span class="text-orange-500 font-bold">Mst. Fatimatuz Zohra</span></h1>
+  <h2 class="text-[45px] font-semibold fade-in">Welcome To My Personal Blog</h2>
+  <p class="text-[20px] py-7 fade-in">I'm not just a blogger; I'm a curator of ideas, an explorer of passions, and a lover of life's beautiful nuances.</p>
+  <button class="bg-orange-600 py-2 px-4 text-[20px] rounded-lg hover:scale-105 transition-transform duration-500">HIRE ME</button>
+</section>
+
+<!-- JavaScript to add animations on scroll -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const fadeInElements = document.querySelectorAll(".fade-in");
+    const slideInElements = document.querySelectorAll(".slide-in");
+    const scaleUpElements = document.querySelectorAll(".scale-up");
+
+    const observerOptions = {
+      root: null,
+      threshold: 0.1,
+      rootMargin: "0px 0px -200px 0px"
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add(entry.target.classList.contains("fade-in") ? "fade-in-active" : 
+                                     entry.target.classList.contains("slide-in") ? "slide-in-active" : 
+                                     "scale-up-active");
+        }
+      });
+    }, observerOptions);
+
+    fadeInElements.forEach(el => observer.observe(el));
+    slideInElements.forEach(el => observer.observe(el));
+    scaleUpElements.forEach(el => observer.observe(el));
+  });
+</script>
+
+</body>
+</html>
